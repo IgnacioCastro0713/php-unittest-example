@@ -3,6 +3,8 @@
 
 namespace App\ShoppingCart;
 
+use App\CustomExceptions\CartIsEmptyException;
+
 class Cart
 {
     public $id;
@@ -26,7 +28,11 @@ class Cart
 
     public function getFirstItem(): CartItem
     {
-        return reset($this->cart);
+        $item = reset($this->cart);
+        if (!$item)
+            throw new CartIsEmptyException();
+
+        return $item;
     }
 
     public function count(): int

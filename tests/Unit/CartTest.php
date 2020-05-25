@@ -3,6 +3,7 @@
 
 namespace Test\Unit;
 
+use App\CustomExceptions\CartIsEmptyException;
 use App\ShoppingCart\Cart;
 use PHPUnit\Framework\TestCase;
 
@@ -40,6 +41,12 @@ class CartTest extends TestCase
     public function testIsEmptyCart()
     {
         $this->assertTrue($this->cart->isEmpty());
+    }
+
+    public function test_it_throws_an_empty_exception()
+    {
+        $this->expectException(CartIsEmptyException::class);
+        $this->cart->getFirstItem();
     }
 
     public function testItRemoveCartItem()

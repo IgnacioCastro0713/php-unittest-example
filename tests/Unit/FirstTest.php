@@ -7,11 +7,13 @@ use PHPUnit\Framework\TestCase;
 
 class FirstTest extends TestCase
 {
-    function testSum()
+    /**
+     * @test
+     */
+    function sum()
     {
         $calculator = new Calculator();
 
-        // asserts
         $this->assertEquals(5, $calculator->sum(2, 3));
 
         $this->assertInstanceOf(Calculator::class, $calculator);
@@ -24,5 +26,24 @@ class FirstTest extends TestCase
         $this->assertClassHasAttribute('data', Calculator::class);
 
         $this->assertContains(1, [1, 2, 3, 4]);
+    }
+
+    public function testToComplete()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testSkipped()
+    {
+        $this->markTestSkipped("This test is skipped");
+    }
+
+
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testValid()
+    {
+
     }
 }
