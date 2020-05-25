@@ -29,15 +29,11 @@ class CartTest extends TestCase
     public function testItAddMultipleItems()
     {
         $items = [];
-
         $this->assertEquals(0, $this->cart->count());
 
-        for ($i = 1; $i <= 5; $i++) {
-            array_push($items, createCartItem("Mouse", 20));
-        }
+        for ($i = 1; $i <= 5; $i++) array_push($items, createCartItem("Mouse", 20));
 
         $this->cart->addItems($items);
-
         $this->assertEquals(count($items), $this->cart->count());
     }
 
